@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo g++ -o hello main.cpp' // Сборка проекта
+                sh 'sudo g++ -o artifact main.cpp' // Сборка проекта
             }
         }
         stage('Archive') {
             steps {
-                archiveArtifacts 'hello' // Архивация бинарного файла
+                archiveArtifacts 'artifact' // Архивация бинарного файла
             }
         }
     }
