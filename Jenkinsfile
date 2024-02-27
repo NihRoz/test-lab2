@@ -5,6 +5,11 @@ pipeline {
         }
     }
     stages {
+        stage('Prepare') {
+            steps {
+                sh 'echo preparing'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'apt update -y && apt upgrade -y && apt install gcc -y'
