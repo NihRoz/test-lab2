@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o hello main.cpp' // Сборка проекта
+                sh 'sudo g++ -o hello main.cpp' // Сборка проекта
             }
         }
         stage('Archive') {
