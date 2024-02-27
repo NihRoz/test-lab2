@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest' // Используем образ gcc для сборки C++ проекта   
-        }
-    }
+    agent any
     stages {
         stage('Prepare') {
             steps {
