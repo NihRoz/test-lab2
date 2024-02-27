@@ -1,15 +1,10 @@
 pipeline {
     agent {
         docker {
-            image 'ubuntu:latest' // Используем образ Ubuntu
+            image 'gcc:latest' // Используем образ gcc для сборки C++ проекта
         }
     }
     stages {
-        stage('Setup') {
-            steps {
-                sh 'apt-get update && apt-get install -y g++' // Установка g++
-            }
-        }
         stage('Build') {
             steps {
                 sh 'g++ -o main main.cpp' // Сборка проекта
