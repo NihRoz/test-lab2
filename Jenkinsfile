@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'gcc:latest' // Используем образ gcc для сборки C++ проекта
+            image 'ubuntu:latest' // Используем образ gcc для сборки C++ проекта
             args '-u nihroz: ' // Jenkins требует прав root для работы внутри контейнера
         }
     }
