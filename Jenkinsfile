@@ -1,8 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'gcc:latest' // Используем образ с установленным компилятором GCC
-        }
+    agent any
     }
     stages {
         stage('Build') {
