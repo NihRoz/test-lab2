@@ -1,14 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'gcc:latest' // Используем образ gcc для сборки C++ проекта
-            args '-u root:root' // Jenkins требует прав root для работы внутри контейнера
+            image 'ubuntu:latest' // Используем образ gcc для сборки C++ проекта   
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh 'sudo g++ -o artifact main.cpp' // Сборка проекта
+                sh 'apt update -y && apt upgrade -y && apt install gcc -y'
+                sh 'g++ -o artifact main.cpp' // Сборка проекта
             }
         }
         stage('Archive') {
