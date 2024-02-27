@@ -1,25 +1,19 @@
 pipeline {
-  agent {
-    docker {
-      image 'ubuntu:20.04'
-      args '-v /workspace:/app'
+    agent {
+        docker {
+            image 'gcc:latest' // Используем образ с установленным компилятором GCC
+        }
     }
-  }
-  stages {
-    stage('Checkout') {
-      steps {
-        git credentialsId: 'jenkins-git-credentials', url: 'https://gitlab.com/user/project.git'
-      }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'g++ -o my_program main.cpp' // Компилируем исходный файл
+            }
+            post {
+                success {
+                    archiveArtifacts 'my_program' // Загружаем бинарный файл как артефакт сборки
+                }
+            }
+        }
     }
-    stage('Build') {
-      steps {
-        sh 'mkdir build && cd build && cmake .. && make'
-      }
-    }
-    stage('Artifact') {
-      steps {
-        archiveArtifacts artifacts: 'build/main', fingerprint: true
-      }
-    }
-  }
 }
